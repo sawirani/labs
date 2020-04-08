@@ -1,0 +1,10 @@
+E:\university\mag\sp\task1forms\task1forms\bin\Debug\task1forms.exe.config
+E:\university\mag\sp\task1forms\task1forms\bin\Debug\task1forms.exe
+E:\university\mag\sp\task1forms\task1forms\bin\Debug\task1forms.pdb
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.csprojAssemblyReference.cache
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.Properties.Resources.resources
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.csproj.GenerateResource.cache
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.csproj.CoreCompileInputs.cache
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.exe
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.pdb
+E:\university\mag\sp\task1forms\task1forms\obj\Debug\task1forms.Form1.resources
