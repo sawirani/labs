@@ -35,24 +35,18 @@ namespace task1forms
     {
         protected IPoint a;
         protected IPoint b;
-        protected IDrawable drawable;
 
         public abstract void GetPoint(double t, out IPoint p);
-        protected ACurve(IPoint a, IPoint b, IDrawable drawable) {
+        protected ACurve(IPoint a, IPoint b) {
             this.a = a;
             this.b = b;
-            this.drawable = drawable;
         }
 
-        protected void Draw(ACurve curve)
-        {
-            drawable.Draw(curve);
-        }
     }
 
     class Line : ACurve {
 
-        public Line(IPoint a,IPoint b, IDrawable drawable) :base(a,b, drawable) {}
+        public Line(IPoint a,IPoint b) :base(a,b) {}
   
         public override void GetPoint(double t, out IPoint p)
         {
@@ -61,11 +55,6 @@ namespace task1forms
             tmp.Y = (1 - t) * a.Y + t * b.Y;
             p = tmp;
         }
-
-        public void Draw()
-        {
-            Draw(this);
-        }
     }
 
     class Bezier : ACurve
@@ -73,7 +62,7 @@ namespace task1forms
         private IPoint c;
         private IPoint d;
 
-        public Bezier(IPoint a, IPoint b, IPoint c, IPoint d, IDrawable drawable) : base(a, b, drawable) {
+        public Bezier(IPoint a, IPoint b, IPoint c, IPoint d) : base(a, b) {
             this.c = c;
             this.d = d;
         }
@@ -85,32 +74,29 @@ namespace task1forms
             tmp.Y = Math.Pow((1 - t), 3) * a.Y + 3 * t * Math.Pow((1 - t), 2) * c.Y + 3 * Math.Pow(t, 2) * (1 - t) * d.Y + Math.Pow(t, 3) * b.Y;
             p = tmp;
         }
-
-        public void Draw()
-        {
-            Draw(this);
-        }
     }
 
     interface IDrawable {
-        void Draw(ACurve curve);
+        void Draw();
     }
 
     abstract class VisualCurve: IDrawable {
         protected Graphics g;
+        protected ICurve curve;
 
-        public VisualCurve(Graphics g) {
+        public VisualCurve(Graphics g, ICurve curve) {
+            this.curve = curve;
             this.g = g;
         }
 
-        public abstract void Draw(ACurve curve);
+        public abstract void Draw();
     }
 
     class VisualLine: VisualCurve{
 
-        public VisualLine(Graphics g) : base(g) { }
+        public VisualLine(Graphics g, ICurve curve) : base(g, curve) { }
 
-        public override void Draw(ACurve curve)
+        public override void Draw()
         {
             Pen pen = new Pen(Color.Black, 3);
             IPoint FirstPoint;
@@ -125,9 +111,9 @@ namespace task1forms
 
     class VisualBezier : VisualCurve
     {
-        public VisualBezier(Graphics g) : base(g) { }
+        public VisualBezier(Graphics g, ICurve curve) : base(g, curve) { }
 
-        public override void Draw(ACurve curve)
+        public override void Draw()
         {
             Pen pen = new Pen(Color.Red, 5);
             curve.GetPoint(0, out IPoint FirstPoint);

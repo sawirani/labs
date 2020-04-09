@@ -19,15 +19,15 @@ namespace task1forms
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            IDrawable drawable = new VisualLine(e.Graphics);
-            Line line = new Line(new Point(0, 0), new Point(100, 100), drawable);
+            Line line = new Line(new Point(0, 0), new Point(100, 100));
+            IDrawable drawable = new VisualLine(e.Graphics, line);
 
-            line.Draw();
+            drawable.Draw();
 
-            IDrawable drawable2 = new VisualBezier(e.Graphics);
-            Bezier bezier = new Bezier(new Point(100, 100), new Point(250, 10), new Point(25, 15), new Point(300, 400), drawable2);
+            Bezier bezier = new Bezier(new Point(100, 100), new Point(250, 10), new Point(25, 15), new Point(300, 400));
+            IDrawable drawable2 = new VisualBezier(e.Graphics,bezier);
 
-            bezier.Draw();
+            drawable2.Draw();
         }
     }
 }
